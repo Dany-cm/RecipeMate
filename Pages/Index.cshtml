@@ -29,11 +29,13 @@
     @if (Model.Recipes != default)
     {
         <p>Honhonhon! I will visit ze vending machine and buy:</p>
-        <ul>
-            @foreach (var recipe in Model.Recipes)
-            {
-                <li>a le @recipe</li>
-            }
-        </ul>
+        
+        
+        @foreach (var recipe in Model.Recipes)
+        {
+            <h3>@recipe.Title</h3>
+            <img src="@recipe.ImageUrl"/>
+            <p>(display the rest of the recipe here however you like)</p>
+        }
     }
 </div>

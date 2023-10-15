@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RecipeMate.Models;
 using RecipeMate.Pages.Forms;
+using RecipeMate.Repositories;
 
 namespace RecipeMate.Pages
 {
@@ -16,7 +17,7 @@ namespace RecipeMate.Pages
 
         [BindProperty] public IndexSearchForm SearchForm { get; set; }
 
-        public IEnumerable<string>? Recipes { get; set; }
+        public List<Recipe>? Recipes { get; set; }
 
         // retrieve the user input
         public async Task<IActionResult> OnPost()

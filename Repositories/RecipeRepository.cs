@@ -1,4 +1,7 @@
-﻿namespace RecipeMate.Models
+﻿using Newtonsoft.Json;
+using RecipeMate.Models;
+
+namespace RecipeMate.Repositories
 {
     public class RecipeRepository
     {
@@ -11,7 +14,7 @@
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
-        public async Task<IEnumerable<string>> GetRecipesByIngredients(string ingredients)
+        public async Task<List<Recipe>?> GetRecipesByIngredients(string ingredients)
         {
             var httpClient = _httpClientFactory.CreateClient();
             var apiKey = _configuration["ApiKey"];
@@ -21,7 +24,7 @@
 
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
-            return responseBody.Split(',');
+            return JsonConvert.DeserializeObject<List<Recipe>>(responseBody);
         }
     }
 }
