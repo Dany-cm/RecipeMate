@@ -6,10 +6,23 @@
 
 <div class="text-center">
     <h1 class="mt-3">RecipeMate</h1>
-    <p class="mt-3">Forgot the recipe you wanted to make but you have the ingredients? <br /> Begin typing the ingredient and the related recipe will be displayed.</p>
+    <p class="mt-3">Forgot the recipe you wanted to make but you have the ingredients? <br/> Begin typing the ingredient and the related recipe will be displayed.</p>
     <form class="d-flex justify-content-center" method="post">
+        @if (!ModelState.IsValid)
+        {
+            <!-- TODO style this properly -->
+            <p class="text-danger">
+                <p>There are some errors:</p>
+                <ul>
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <li>@error.ErrorMessage</li>
+                    }
+                </ul>
+            </p>
+        }
         <p>
-            <input class="form-control" type="text" name="ingredients" />
+            <input class="form-control" type="text" name="ingredients"/>
         </p>
     </form>
     @* display the result here *@

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RecipeMate.Pages.Forms;
 
 namespace RecipeMate.Pages
 {
@@ -12,14 +13,20 @@ namespace RecipeMate.Pages
             _logger = logger;
         }
 
-        /* retrieve the user input
-        public void OnGet()
+        [BindProperty] public IndexSearchForm SearchForm { get; set; }
+
+        // retrieve the user input
+        public async Task<IActionResult> OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             // pass the information to GetRecipesByIngredients
             
             // GetRecipesByIngredients return a list of recipe
-
+            await Task.Yield();
+            return Page();
         }
-        */
     }
 }
