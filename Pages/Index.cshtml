@@ -26,4 +26,14 @@
         </p>
     </form>
     @* display the result here *@
+    @if (Model.Recipes != default)
+    {
+        <p>Honhonhon! I will visit ze vending machine and buy:</p>
+        <ul>
+            @foreach (var recipe in Model.Recipes)
+            {
+                <li>a le @recipe</li>
+            }
+        </ul>
+    }
 </div>
