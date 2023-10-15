@@ -1,11 +1,11 @@
 ﻿namespace RecipeMate.Models
 {
-    public class RecipeRespository
+    public class RecipeRepository
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
 
-        public RecipeRespository(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        public RecipeRepository(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
