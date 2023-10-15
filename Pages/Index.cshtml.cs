@@ -12,9 +12,14 @@ namespace RecipeMate.Pages
             _logger = logger;
         }
 
+        /* retrieve the user input
         public void OnGet()
         {
+            // pass the information to GetRecipesByIngredients
+            
+            // GetRecipesByIngredients return a list of recipe
 
         }
+        */
     }
 }
