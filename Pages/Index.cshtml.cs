@@ -18,6 +18,7 @@ namespace RecipeMate.Pages
         [BindProperty] public IndexSearchForm SearchForm { get; set; }
 
         public List<Recipe>? Recipes { get; set; }
+        public List<Information>? Informations { get; set; }
 
         // retrieve the user input
         public async Task<IActionResult> OnPost()
@@ -30,6 +31,8 @@ namespace RecipeMate.Pages
             // pass the information to GetRecipesByIngredients
             // GetRecipesByIngredients return a list of recipe
             Recipes = await _recipes.GetRecipesByIngredients(SearchForm.Ingredients!);
+
+            // Informations = await _recipes.GetRecipeInformation();
             
             return Page();
         }

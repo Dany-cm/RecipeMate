@@ -10,7 +10,6 @@
     <form class="d-flex justify-content-center" method="post">
         @if (!ModelState.IsValid)
         {
-            <!-- TODO style this properly -->
             <p class="text-danger">
                 <p>There are some errors:</p>
                 <ul>
@@ -25,17 +24,40 @@
             <input class="form-control" type="text" name="ingredients"/>
         </p>
     </form>
-    @* display the result here *@
-    @if (Model.Recipes != default)
-    {
-        <p>Honhonhon! I will visit ze vending machine and buy:</p>
-        
-        
-        @foreach (var recipe in Model.Recipes)
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @if (Model.Recipes != default)
         {
-            <h3>@recipe.Title</h3>
-            <img src="@recipe.ImageUrl"/>
-            <p>(display the rest of the recipe here however you like)</p>
+            @foreach (var recipe in Model.Recipes)
+            {
+                <div class="col">
+                    <div class="card" data-toggle="modal" data-target="#recipeModal">
+                        <img src="@recipe.ImageUrl" class="card-img-top" alt="@recipe.Title">
+                        <div class="card-body">
+                            <h5 class="card-title">@recipe.Title</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#recipeModal">Information</button>
+                        </div>
+                    </div>
+                </div>
+            }
         }
-    }
+    </div>
+    <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="recipeModalLabel">Recipe Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @if (Model.Informations != default)
+                    {
+                        @foreach (var recipeInformation in Model.Informations)
+                        {
+                            <p>@recipeInformation.Summary</p>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

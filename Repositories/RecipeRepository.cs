@@ -26,5 +26,18 @@ namespace RecipeMate.Repositories
             var responseBody = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<List<Recipe>>(responseBody);
         }
+        
+        public async Task<List<Information>?> GetRecipeInformation(int id)
+        {
+            var httpClient = _httpClientFactory.CreateClient();
+            var apiKey = _configuration["ApiKey"];
+
+            var url = $"https://api.spoonacular.com/recipes/{id}/information&apiKey={apiKey}";
+            var response = await httpClient.GetAsync(url);
+
+            response.EnsureSuccessStatusCode();
+            var responseBody = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<Information>>(responseBody);
+        }
     }
 }
