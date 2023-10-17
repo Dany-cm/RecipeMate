@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RecipeMate.Models;
+using RecipeMate.Models.Information;
 
 namespace RecipeMate.Repositories
 {
@@ -27,17 +28,17 @@ namespace RecipeMate.Repositories
             return JsonConvert.DeserializeObject<List<Recipe>>(responseBody);
         }
         
-        public async Task<List<Information>?> GetRecipeInformation(int id)
+        public async Task<RecipeInfo?> GetRecipeInformation(int id)
         {
             var httpClient = _httpClientFactory.CreateClient();
             var apiKey = _configuration["ApiKey"];
 
-            var url = $"https://api.spoonacular.com/recipes/{id}/information&apiKey={apiKey}";
+            var url = $"https://api.spoonacular.com/recipes/{id}/information?includeNutrition=false&apiKey={apiKey}";
             var response = await httpClient.GetAsync(url);
 
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<Information>>(responseBody);
+            return JsonConvert.DeserializeObject<RecipeInfo?>(responseBody);
         }
     }
 }

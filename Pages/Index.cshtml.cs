@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RecipeMate.Models;
+using RecipeMate.Models.Information;
 using RecipeMate.Pages.Forms;
 using RecipeMate.Repositories;
 
@@ -18,9 +19,8 @@ namespace RecipeMate.Pages
         [BindProperty] public IndexSearchForm SearchForm { get; set; }
 
         public List<Recipe>? Recipes { get; set; }
-        public List<Information>? Informations { get; set; }
-
-        // retrieve the user input
+        public RecipeInfo? Informations { get; set; }
+        
         public async Task<IActionResult> OnPost()
         {
             if (!ModelState.IsValid)
@@ -28,12 +28,14 @@ namespace RecipeMate.Pages
                 return Page();
             }
             
-            // pass the information to GetRecipesByIngredients
-            // GetRecipesByIngredients return a list of recipe
             Recipes = await _recipes.GetRecipesByIngredients(SearchForm.Ingredients!);
 
-            // Informations = await _recipes.GetRecipeInformation();
-            
+            if (!int.TryParse(Recipes![0].Id, out var id))
+            {
+                return Page();
+            }
+            Informations = await _recipes.GetRecipeInformation(id)!;
+
             return Page();
         }
     }
