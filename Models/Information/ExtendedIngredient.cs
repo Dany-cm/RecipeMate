@@ -20,7 +20,7 @@ public class ExtendedIngredient
 
     [JsonProperty("originalName")] public string originalName { get; set; }
 
-    [JsonProperty("amount")] public int amount { get; set; }
+    [JsonProperty("amount")] public decimal amount { get; set; }
 
     [JsonProperty("unit")] public string unit { get; set; }
 

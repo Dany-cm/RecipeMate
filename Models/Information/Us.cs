@@ -4,7 +4,7 @@ namespace RecipeMate.Models.Information;
 
 public class Us
 {
-    [JsonProperty("amount")] public int amount { get; set; }
+    [JsonProperty("amount")] public decimal amount { get; set; }
 
     [JsonProperty("unitShort")] public string unitShort { get; set; }
 

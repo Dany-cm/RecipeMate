@@ -14,9 +14,9 @@ public class ProductMatch
 
     [JsonProperty("imageUrl")] public string imageUrl { get; set; }
 
-    [JsonProperty("averageRating")] public double averageRating { get; set; }
+    [JsonProperty("averageRating")] public decimal averageRating { get; set; }
 
-    [JsonProperty("ratingCount")] public int ratingCount { get; set; }
+    [JsonProperty("ratingCount")] public decimal ratingCount { get; set; }
 
     [JsonProperty("score")] public double score { get; set; }
 

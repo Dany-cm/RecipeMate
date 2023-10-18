@@ -14,7 +14,7 @@ public class RecipeDetails : PageModel
         _recipes = recipes;
     }
     
-    public List<RecipeInfo>? Informations { get; set; }
+    public RecipeInfo? Informations { get; set; }
         
     public async Task<IActionResult> OnGet()
     {

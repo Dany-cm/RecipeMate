@@ -7,10 +7,111 @@
 
 @if (Model.Informations != default)
 {
-        @foreach (var item in Model.Informations)
+    // TODO : Verify everything is set correctly + style it
+    <p>@Model.Informations.id</p>
+    <p>@Model.Informations.cheap</p>
+    @foreach (var cuisine in Model.Informations.cuisines)
+    {
+        <p>@cuisine</p>
+    }
+    foreach (var diet in Model.Informations.diets)
+    {
+        <p>@diet</p>
+    }
+    <p>@Model.Informations.gaps</p>
+    <p>@Model.Informations.image</p>
+    <p>@Model.Informations.instructions</p>
+    <p>@Model.Informations.license</p>
+    @foreach (var occasion in Model.Informations.occasions)
+    {
+        <p>@occasion</p>
+    }
+    <p>@Model.Informations.servings</p>
+    <p>@Model.Informations.summary</p>
+    <p>@Model.Informations.sustainable</p>
+    <p>@Model.Informations.title</p>
+    <p>@Model.Informations.vegan</p>
+    <p>@Model.Informations.vegetarian</p>
+    <p>@Model.Informations.aggregateLikes</p>
+    @foreach (var analyzedInstruction in Model.Informations.analyzedInstructions)
+    {
+        <p>@analyzedInstruction.name</p>
+        @foreach (var step in analyzedInstruction.steps)
         {
-            <li>@item.id</li>
-            <li>@item.summary</li>
-            <li>@item.servings</li>
+            @foreach (var equipment in step.equipment)
+            {
+                <p>@equipment.id</p>
+                <p>@equipment.image</p>
+                <p>@equipment.name</p>
+                <p>@equipment.temperature</p>
+                <p>@equipment.localizedName</p>
+            }
+            @foreach (var ingredient in step.ingredients)
+            {
+                <p>@ingredient.id</p>
+                <p>@ingredient.image</p>
+                <p>@ingredient.name</p>
+                <p>@ingredient.localizedName</p>
+            }
+            <p>@step.number</p>
+            <p>@step.step</p>
         }
+    }
+    <p>@Model.Informations.cookingMinutes</p>
+    <p>@Model.Informations.creditsText</p>
+    <p>@Model.Informations.dairyFree</p>
+    @foreach (var dishType in Model.Informations.dishTypes)
+    {
+        <p>@dishType</p>
+    }
+    @foreach (var extendedIngredient in Model.Informations.extendedIngredients)
+    {
+        <p>@extendedIngredient.aisle</p>
+        <p>@extendedIngredient.amount</p>
+        <p>@extendedIngredient.consistency</p>
+        <p>@extendedIngredient.id</p>
+        <p>@extendedIngredient.image</p>
+        <p>@extendedIngredient.measures.metric.amount</p>
+        <p>@extendedIngredient.measures.metric.unitLong</p>
+        <p>@extendedIngredient.measures.metric.unitShort</p>
+        <p>@extendedIngredient.measures.us.amount</p>
+        <p>@extendedIngredient.measures.us.unitLong</p>
+        <p>@extendedIngredient.measures.us.unitShort</p>
+        <p>@extendedIngredient.meta</p>
+        <p>@extendedIngredient.name</p>
+        <p>@extendedIngredient.original</p>
+        <p>@extendedIngredient.unit</p>
+        <p>@extendedIngredient.nameClean</p>
+        <p>@extendedIngredient.originalName</p>
+    }
+    <p>@Model.Informations.glutenFree</p>
+    <p>@Model.Informations.healthScore</p>
+    <p>@Model.Informations.imageType</p>
+    <p>@Model.Informations.lowFodmap</p>
+    <p>@Model.Informations.originalId</p>
+    <p>@Model.Informations.preparationMinutes</p>
+    <p>@Model.Informations.sourceName</p>
+    <p>@Model.Informations.sourceUrl</p>
+    <p>@Model.Informations.veryHealthy</p>
+    <p>@Model.Informations.veryPopular</p>
+    @foreach (var pairedWine in @Model.Informations.winePairing.pairedWines)
+    {
+        <p>@pairedWine</p>
+    }
+    <p>@Model.Informations.winePairing.pairingText</p>
+    @foreach (var productMatch in Model.Informations.winePairing.productMatches)
+    {
+        <p>@productMatch.description</p>
+        <p>@productMatch.id</p>
+        <p>@productMatch.link</p>
+        <p>@productMatch.price</p>
+        <p>@productMatch.score</p>
+        <p>@productMatch.title</p>
+        <p>@productMatch.averageRating</p>
+        <p>@productMatch.imageUrl</p>
+        <p>@productMatch.ratingCount</p>
+    }
+    <p>@Model.Informations.pricePerServing</p>
+    <p>@Model.Informations.readyInMinutes</p>
+    <p>@Model.Informations.weightWatcherSmartPoints</p>
 }
