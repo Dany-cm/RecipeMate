@@ -1,0 +1,16 @@
+﻿@page
+@model RecipeMate.Pages.RecipeDetails
+
+@{
+    Layout = null;
+}
+
+@if (Model.Informations != default)
+{
+        @foreach (var item in Model.Informations)
+        {
+            <li>@item.id</li>
+            <li>@item.summary</li>
+            <li>@item.servings</li>
+        }
+}

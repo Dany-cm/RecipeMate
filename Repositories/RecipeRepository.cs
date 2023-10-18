@@ -28,7 +28,7 @@ namespace RecipeMate.Repositories
             return JsonConvert.DeserializeObject<List<Recipe>>(responseBody);
         }
         
-        public async Task<RecipeInfo?> GetRecipeInformation(int id)
+        public async Task<List<RecipeInfo>?> GetRecipeInformation(int id)
         {
             var httpClient = _httpClientFactory.CreateClient();
             var apiKey = _configuration["ApiKey"];
@@ -38,7 +38,7 @@ namespace RecipeMate.Repositories
 
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<RecipeInfo?>(responseBody);
+            return JsonConvert.DeserializeObject<List<RecipeInfo>?>(responseBody);
         }
     }
 }
