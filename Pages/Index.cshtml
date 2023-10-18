@@ -1,4 +1,5 @@
 ﻿@page
+@using static RecipeMate.Models.Utilities.StringExtensions
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -36,57 +37,11 @@
                         <img src="@recipe.ImageUrl" class="card-img-top" alt="@recipe.Title">
                         <div class="card-body">
                             <h5 class="card-title">@recipe.Title</h5>
-                            <a href="@recipe.Id" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#recipeModal">Information</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="recipeModalLabel">Recipe Details</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                 @* TODO *@
-                                @*@if (Model.Informations != default)
-                                {
-                                    @foreach (var recipeInfo in Model.Informations)
-                                    {
-                                        <p>@recipeInfo.title</p>
-                                        <p>@recipeInfo.cuisines</p>
-                                        <p>@recipeInfo.diets</p>
-                                        <p>@recipeInfo.instructions</p>
-                                        <p>@recipeInfo.servings</p>
-                                        <p>@recipeInfo.summary</p>
-                                        <p>@recipeInfo.readyInMinutes</p>
-                                    }
-                                }*@
-                            </div>
+                            <a asp-page="@recipe.Title.ToSlug()" asp-route-id="@recipe.Id" class="btn btn-primary">View Recipe</a>
                         </div>
                     </div>
                 </div>
             }
         }
     </div>
-    @*<div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="recipeModalLabel">Recipe Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    @if (Model.Informations != default)
-                    {
-                        @foreach (var recipeInformation in Model.Informations)
-                        {
-                            <p>@recipeInformation.Summary</p>
-                        }
-                    }
-                </div>
-            </div>
-        </div>
-    </div>*@
 </div>

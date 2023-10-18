@@ -30,11 +30,12 @@ namespace RecipeMate.Pages
             
             Recipes = await _recipes.GetRecipesByIngredients(SearchForm.Ingredients!);
 
-            if (!int.TryParse(Recipes![0].Id, out var id))
+            // TODO : We will handle this on a new page
+            /*if (!int.TryParse(Recipes![0].Id, out var id))
             {
                 return Page();
             }
-            Informations = await _recipes.GetRecipeInformation(id)!;
+            Informations = await _recipes.GetRecipeInformation(id)!;*/
 
             return Page();
         }
