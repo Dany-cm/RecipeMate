@@ -23,7 +23,7 @@
         }
         <p>
             <input class="form-control" type="text" name="ingredients"/>
-            
+
         </p>
         <button class="btn btn-primary ms-3 h-100"type="submit">Search</button>
     </form>
@@ -37,7 +37,7 @@
                         <img src="@recipe.ImageUrl" class="card-img-top" alt="@recipe.Title">
                         <div class="card-body">
                             <h5 class="card-title">@recipe.Title</h5>
-                            <a asp-page="/RecipeDetails" asp-route-id="@recipe.Id" class="btn btn-primary">View Recipe</a>
+                            <a asp-page="/RecipeDetails" asp-route-id="@recipe.Id" asp-route-title="@recipe.Title.ToSlug()" class="btn btn-primary">View Recipe</a>
                         </div>
                     </div>
                 </div>

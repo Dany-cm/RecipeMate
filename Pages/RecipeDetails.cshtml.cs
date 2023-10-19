@@ -13,20 +13,20 @@ public class RecipeDetails : PageModel
     {
         _recipes = recipes;
     }
-    
+
     public RecipeInfo? Informations { get; set; }
-        
+
     public async Task<IActionResult> OnGet()
     {
         if (!ModelState.IsValid)
         {
             return Page();
         }
-        
-        int recipeId = int.Parse(HttpContext.Request.Query["id"]);
-    
+
+        int recipeId = int.Parse(HttpContext.Request.Path.Value.Split('/').Last().Split('-').First());
+
         Informations = await _recipes.GetRecipeInformation(recipeId)!;
-        
+
         return Page();
     }
 }
