@@ -14,7 +14,7 @@ public class RecipeDetails : PageModel
         _recipes = recipes;
     }
 
-    public RecipeInfo? Informations { get; set; }
+    public RecipeInfo? Information { get; set; }
 
     public async Task<IActionResult> OnGet()
     {
@@ -25,7 +25,7 @@ public class RecipeDetails : PageModel
 
         int recipeId = int.Parse(HttpContext.Request.Path.Value.Split('/').Last().Split('-').First());
 
-        Informations = await _recipes.GetRecipeInformation(recipeId)!;
+        Information = await _recipes.GetRecipeInformation(recipeId)!;
 
         return Page();
     }
