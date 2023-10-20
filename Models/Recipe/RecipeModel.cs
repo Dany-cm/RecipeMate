@@ -2,7 +2,7 @@
 
 namespace RecipeMate.Models;
 
-public class Recipe
+public class RecipeModel
 {
     [JsonProperty("id")]
     public string Id { get; set; }
@@ -20,13 +20,13 @@ public class Recipe
     public int MissedIngredientCount { get; set; }
 
     [JsonProperty("missedIngredients")]
-    public List<Ingredient> MissedIngredients { get; set; }
+    public List<IngredientModel> MissedIngredients { get; set; }
     
     [JsonProperty("usedIngredients")]
-    public List<Ingredient> UsedIngredients { get; set; }
+    public List<IngredientModel> UsedIngredients { get; set; }
     
     [JsonProperty("unusedIngredients")]
-    public List<Ingredient> UnusedIngredients { get; set; }
+    public List<IngredientModel> UnusedIngredients { get; set; }
     
     [JsonProperty("likes")]
     public int Likes { get; set; }

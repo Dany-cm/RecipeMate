@@ -15,17 +15,17 @@ namespace RecipeMate.Repositories
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
-        public async Task<List<Recipe>?> GetRecipesByIngredients(string ingredients)
+        public async Task<List<RecipeModel>?> GetRecipesByIngredients(string ingredients)
         {
             var httpClient = _httpClientFactory.CreateClient();
             var apiKey = _configuration["ApiKey"];
 
-            var url = $"https://api.spoonacular.com/recipes/findByIngredients?ingredients={ingredients}&number=10&apiKey={apiKey}";
+            var url = $"https://api.spoonacular.com/recipes/findByIngredients?ingredients={ingredients}&number=12&apiKey={apiKey}";
             var response = await httpClient.GetAsync(url);
 
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<Recipe>>(responseBody);
+            return JsonConvert.DeserializeObject<List<RecipeModel>>(responseBody);
         }
         
         public async Task<RecipeInfo?> GetRecipeInformation(int id)

@@ -17,7 +17,7 @@ namespace RecipeMate.Pages
 
         [BindProperty] public IndexSearchForm SearchForm { get; set; }
 
-        public List<Recipe>? Recipes { get; set; }
+        public List<RecipeModel>? Recipes { get; set; }
         
         public async Task<IActionResult> OnPost()
         {

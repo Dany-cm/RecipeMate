@@ -2,7 +2,7 @@
 
 namespace RecipeMate.Models;
 
-public class Ingredient
+public class IngredientModel
 {
     [JsonProperty("id")] public int Id { get; set; }
 
