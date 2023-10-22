@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RecipeMate.Models.Information;
 using RecipeMate.Repositories;
@@ -16,16 +17,28 @@ public class RecipeDetails : PageModel
 
     public RecipeInfo? Information { get; set; }
 
-    public async Task<IActionResult> OnGet()
+    public async Task<IActionResult> OnGet(string slug)
     {
-        if (!ModelState.IsValid)
+        // There is no form on this page, so we don't need to check if the model is valid
+        // if (!ModelState.IsValid)
+        // {
+        //     return Page();
+        // }
+        
+        // This regex will match a string like "123-recipe-name" and extract the recipe ID and name
+        var regex = new Regex(@"(?<id>\d+)-(?<recipe>.+)");
+        var matches = regex.Match(slug);
+        // If the slug doesn't match the regex, return a 404
+        if (!matches.Success)
         {
-            return Page();
+            return NotFound();
         }
+        
+        var id = int.Parse(matches.Groups["id"].Value);
+        // Recipe is currently unused, but I've left it here as an example.
+        var recipe = matches.Groups["recipe"].Value;
 
-        int recipeId = int.Parse(HttpContext.Request.Path.Value.Split('/').Last().Split('-').First());
-
-        Information = await _recipes.GetRecipeInformation(recipeId)!;
+        Information = await _recipes.GetRecipeInformation(id);
 
         return Page();
     }

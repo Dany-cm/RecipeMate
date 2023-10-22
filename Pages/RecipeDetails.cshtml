@@ -1,4 +1,15 @@
-﻿@page "/recipe/{id}-{title}"
+﻿@*
+    I've converted this page to use Regex to extract the information
+    you want just in case you do need the recipe name in future, but
+    you are currently not using the recipe name for anything.
+    
+    As such, this can be greatly simplified by just passing the ID
+    as normal.
+    
+    Slugs really only work when you have a database backing the app
+    and you can use the slug to look up the recipe in the database.
+*@
+@page "/recipe/{slug}"
 @model RecipeMate.Pages.RecipeDetails
 
 @{
