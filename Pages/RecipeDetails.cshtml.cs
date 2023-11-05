@@ -19,12 +19,6 @@ public class RecipeDetails : PageModel
 
     public async Task<IActionResult> OnGet(string slug)
     {
-        // There is no form on this page, so we don't need to check if the model is valid
-        // if (!ModelState.IsValid)
-        // {
-        //     return Page();
-        // }
-        
         // This regex will match a string like "123-recipe-name" and extract the recipe ID and name
         var regex = new Regex(@"(?<id>\d+)-(?<recipe>.+)");
         var matches = regex.Match(slug);
@@ -33,7 +27,7 @@ public class RecipeDetails : PageModel
         {
             return NotFound();
         }
-        
+
         var id = int.Parse(matches.Groups["id"].Value);
         // Recipe is currently unused, but I've left it here as an example.
         var recipe = matches.Groups["recipe"].Value;
