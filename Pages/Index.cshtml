@@ -4,32 +4,33 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="row" style="height: calc(100vh - 149px);"><!-- probably remove too, it just sets the height of the row to the height of the viewport minus the height of the navbar & footer -->
+<div class="row">
     <div class="col-4 g-0">
-        <img src="https://placekitten.com/640/814" alt="RecipeMate Cat" class="img-fluid" style="width: 100%; height: auto;"/> <!-- TODO: Add image -->
+        <img src="css/images/landing.webp" alt="RecipeMate Cat" class="img-fluid" style="width: 100%; height: auto;"/>
     </div>
-    <div class="col d-flex align-items-center justify-content-center"><!-- Naravia reckons you want that int middle vertically and horizontally, if not just remove: 'd-flex align-items-center justify-content-center' -->
-            <div class="text-center" style="margin-top:10vh;">
-                <h1 class="mt-3">RecipeMate</h1>
-                <p class="mt-3">Forgot the recipe you wanted to make but you have the ingredients? <br/> Begin typing the ingredient and the related recipe will be displayed.</p>
-                <form class="d-flex justify-content-center" method="post">
-                    @if (!ModelState.IsValid)
-                    {
-                        <p class="text-danger">
-                            <p>There are some errors:</p>
-                            <ul>
-                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-                                {
-                                    <li>@error.ErrorMessage</li>
-                                }
-                            </ul>
-                        </p>
-                    }
-                    <p>
-                        <input class="form-control" type="text" name="ingredients"/>
-
+    <div class="col d-flex align-items-center justify-content-center" style="background-color: #ACC8E5;">
+        <!-- Naravia reckons you want that int middle vertically and horizontally, if not just remove: 'd-flex align-items-center justify-content-center' -->
+        <div class="text-center">
+            <h1 class="mt-3">RecipeMate</h1>
+            <p class="mt-3">Forgot the recipe you wanted to make but you have the ingredients? <br/> Begin typing the ingredient and the related recipe will be displayed.</p>
+            <form class="d-flex justify-content-center" method="post">
+                @if (!ModelState.IsValid)
+                {
+                    <p class="text-danger">
+                        <p>There are some errors:</p>
+                        <ul>
+                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <li>@error.ErrorMessage</li>
+                            }
+                        </ul>
                     </p>
-                    <button asp-page="Recipe" class="btn btn-primary ms-3 h-100" type="submit">Search</button>
-                </form>
+                }
+                <div class="input-group">
+                    <input type="search" class="form-control" placeholder="Search" name="ingredients">
+                    <button asp-page="Recipe" class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </form>
         </div>
-</div> 
+    </div>
+</div>
