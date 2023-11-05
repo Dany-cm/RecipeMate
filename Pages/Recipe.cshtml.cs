@@ -2,15 +2,15 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RecipeMate.Models;
 using RecipeMate.Pages.Forms;
-using RecipeMate.Repositories;
+using RecipeMate.Services;
 
 namespace RecipeMate.Pages;
 
 public class Recipe : PageModel
 {
-    private readonly RecipeRepository _recipes;
+    private readonly RecipeService _recipes;
 
-    public Recipe(RecipeRepository recipes)
+    public Recipe(RecipeService recipes)
     {
         _recipes = recipes;
     }

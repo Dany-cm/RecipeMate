@@ -1,13 +1,13 @@
 using System.Reflection;
 using RecipeMate.Models;
-using RecipeMate.Repositories;
+using RecipeMate.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddHttpClient();
-builder.Services.AddTransient<RecipeRepository>();
+builder.Services.AddTransient<RecipeService>();
 
 // Add environements variables
 builder.Configuration.AddEnvironmentVariables().AddUserSecrets(Assembly.GetExecutingAssembly(), true);

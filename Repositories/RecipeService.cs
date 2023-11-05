@@ -2,15 +2,15 @@
 using RecipeMate.Models;
 using RecipeMate.Models.Information;
 
-namespace RecipeMate.Repositories
+namespace RecipeMate.Services
 {
     /* Naming suggestion: this is more of a service than a repository */
-    public class RecipeRepository
+    public class RecipeService
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
 
-        public RecipeRepository(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        public RecipeService(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
