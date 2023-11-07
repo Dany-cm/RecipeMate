@@ -13,14 +13,19 @@
 @model RecipeMate.Pages.RecipeDetails
 
 @{
-    Layout = null;
+    ViewData["Title"] = Model.Information?.title;
 }
 
-@if (Model.Information != default)
+@if (Model.Information == default)
 {
-    // TODO : Verify everything is set correctly + style it
-    <p>@Model.Information.id</p>
-    <p>@Model.Information.cheap</p>
+    <div class="col">
+        <p>There are no recipe information to display.</p>
+    </div>
+}
+else
+{
+    // TODO: Style this
+    <p>@Model.Information.title</p>
     @foreach (var cuisine in Model.Information.cuisines)
     {
         <p>@cuisine</p>
@@ -29,20 +34,23 @@
     {
         <p>@diet</p>
     }
-    <p>@Model.Information.gaps</p>
-    <p>@Model.Information.image</p>
+    <img src="@Model.Information.image" alt="@Model.Information.title">
     <p>@Model.Information.instructions</p>
+    <p>@Model.Information.vegan</p>
+    <p>@Model.Information.vegetarian</p>
+
+    // TODO: Sort what kind of information I want to display
+    @*<p>@Model.Information.summary</p>
+    <p>@Model.Information.sustainable</p>
+    <p>@Model.Information.id</p>
+    <p>@Model.Information.cheap</p>
+    <p>@Model.Information.gaps</p>
     <p>@Model.Information.license</p>
     @foreach (var occasion in Model.Information.occasions)
     {
         <p>@occasion</p>
     }
     <p>@Model.Information.servings</p>
-    <p>@Model.Information.summary</p>
-    <p>@Model.Information.sustainable</p>
-    <p>@Model.Information.title</p>
-    <p>@Model.Information.vegan</p>
-    <p>@Model.Information.vegetarian</p>
     <p>@Model.Information.aggregateLikes</p>
     @foreach (var analyzedInstruction in Model.Information.analyzedInstructions)
     {
@@ -124,5 +132,5 @@
     }
     <p>@Model.Information.pricePerServing</p>
     <p>@Model.Information.readyInMinutes</p>
-    <p>@Model.Information.weightWatcherSmartPoints</p>
+    <p>@Model.Information.weightWatcherSmartPoints</p>*@
 }
