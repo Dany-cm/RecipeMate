@@ -9,5 +9,10 @@ public static class StringExtensions
         SlugHelper helper = new SlugHelper();
         return helper.GenerateSlug(title);
     }
+
+    public static string ToUserFriendlyString(this bool value)
+    {
+        return value ? "yes" : "no";
+    }
     
 }

@@ -10,6 +10,7 @@
     and you can use the slug to look up the recipe in the database.
 *@
 @page "/recipe/{slug}"
+@using RecipeMate.Models.Utilities
 @model RecipeMate.Pages.RecipeDetails
 
 @{
@@ -24,20 +25,44 @@
 }
 else
 {
+    <div class="row mt-3">
+        <div class="col-md-6 col-lg-6">
+            <img src="@Model.Information.image" alt="@Model.Information.title" class="img-fluid rounded w-100">
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <h1>@Model.Information.title</h1>
+            <br/>
+            <ul class="list-group list-group-horizontal">
+                @foreach (var diet in Model.Information.diets)
+                {
+                    <li class="list-group-item">@diet</li>
+                }
+            </ul>
+            <br/>
+            <ul>
+                <li>
+                    <i class="fa-solid fa-leaf"></i>
+                    Vegan friendly? @Model.Information.vegan.ToUserFriendlyString()
+                </li>
+                <li>
+                    <i class="fa-solid fa-plant-wilt"></i>
+                    Vegetarian friendly? @Model.Information.vegetarian.ToUserFriendlyString()
+                </li>
+            </ul>
+            <hr/>
+            @if (string.IsNullOrWhiteSpace(Model.Information.instructions))
+            {
+                <p>Sorry, there is no instruction for this recipe!</p>
+            }
+            else
+            {
+                @Html.Raw(@Model.Information.instructions)
+            }
+        </div>
+    </div>
+
+
     // TODO: Style this
-    <p>@Model.Information.title</p>
-    @foreach (var cuisine in Model.Information.cuisines)
-    {
-        <p>@cuisine</p>
-    }
-    foreach (var diet in Model.Information.diets)
-    {
-        <p>@diet</p>
-    }
-    <img src="@Model.Information.image" alt="@Model.Information.title">
-    <p>@Model.Information.instructions</p>
-    <p>@Model.Information.vegan</p>
-    <p>@Model.Information.vegetarian</p>
 
     // TODO: Sort what kind of information I want to display
     @*<p>@Model.Information.summary</p>
