@@ -27,7 +27,7 @@ else
 {
     <div class="row mt-3">
         <div class="col-md-6 col-lg-6">
-            <img src="@Model.Information.image" alt="@Model.Information.title" class="img-fluid rounded w-100">
+            <img src="@Model.Information.image" alt="@Model.Information.title" class="img-fluid rounded w-100 border border-dark shadow-lg">
         </div>
         <div class="col-md-6 col-lg-6">
             <h1>@Model.Information.title</h1>
@@ -35,127 +35,25 @@ else
             <ul class="list-group list-group-horizontal">
                 @foreach (var diet in Model.Information.diets)
                 {
-                    <li class="list-group-item">@diet</li>
+                    <li class="list-group-item bg-primary text-white">@diet</li>
                 }
             </ul>
             <br/>
             <ul>
-                <li>
-                    <i class="fa-solid fa-leaf"></i>
-                    Vegan friendly? @Model.Information.vegan.ToUserFriendlyString()
-                </li>
-                <li>
-                    <i class="fa-solid fa-plant-wilt"></i>
-                    Vegetarian friendly? @Model.Information.vegetarian.ToUserFriendlyString()
-                </li>
+                <li><i class="fa-solid fa-leaf"></i> Vegan friendly? @Model.Information.vegan.ToUserFriendlyString()</li>
+                <li><i class="fa-solid fa-plant-wilt"></i> Vegetarian friendly? @Model.Information.vegetarian.ToUserFriendlyString()</li>
             </ul>
             <hr/>
             @if (string.IsNullOrWhiteSpace(Model.Information.instructions))
             {
-                <p>Sorry, there is no instruction for this recipe!</p>
+                <p style="color: #d35400;">Sorry, there is no instruction for this recipe!</p>
             }
             else
             {
-                @Html.Raw(@Model.Information.instructions)
+                <div class="m-3 p-3" style="background-color: #ecf0f1; border-radius: 10px;">
+                    @Html.Raw(@Model.Information.instructions)
+                </div>
             }
         </div>
     </div>
-
-
-    // TODO: Style this
-
-    // TODO: Sort what kind of information I want to display
-    @*<p>@Model.Information.summary</p>
-    <p>@Model.Information.sustainable</p>
-    <p>@Model.Information.id</p>
-    <p>@Model.Information.cheap</p>
-    <p>@Model.Information.gaps</p>
-    <p>@Model.Information.license</p>
-    @foreach (var occasion in Model.Information.occasions)
-    {
-        <p>@occasion</p>
-    }
-    <p>@Model.Information.servings</p>
-    <p>@Model.Information.aggregateLikes</p>
-    @foreach (var analyzedInstruction in Model.Information.analyzedInstructions)
-    {
-        <p>@analyzedInstruction.name</p>
-        @foreach (var step in analyzedInstruction.steps)
-        {
-            @foreach (var equipment in step.equipment)
-            {
-                <p>@equipment.id</p>
-                <p>@equipment.image</p>
-                <p>@equipment.name</p>
-                <p>@equipment.temperature</p>
-                <p>@equipment.localizedName</p>
-            }
-            @foreach (var ingredient in step.ingredients)
-            {
-                <p>@ingredient.id</p>
-                <p>@ingredient.image</p>
-                <p>@ingredient.name</p>
-                <p>@ingredient.localizedName</p>
-            }
-            <p>@step.number</p>
-            <p>@step.step</p>
-        }
-    }
-    <p>@Model.Information.cookingMinutes</p>
-    <p>@Model.Information.creditsText</p>
-    <p>@Model.Information.dairyFree</p>
-    @foreach (var dishType in Model.Information.dishTypes)
-    {
-        <p>@dishType</p>
-    }
-    @foreach (var extendedIngredient in Model.Information.extendedIngredients)
-    {
-        <p>@extendedIngredient.aisle</p>
-        <p>@extendedIngredient.amount</p>
-        <p>@extendedIngredient.consistency</p>
-        <p>@extendedIngredient.id</p>
-        <p>@extendedIngredient.image</p>
-        <p>@extendedIngredient.measures.metric.amount</p>
-        <p>@extendedIngredient.measures.metric.unitLong</p>
-        <p>@extendedIngredient.measures.metric.unitShort</p>
-        <p>@extendedIngredient.measures.us.amount</p>
-        <p>@extendedIngredient.measures.us.unitLong</p>
-        <p>@extendedIngredient.measures.us.unitShort</p>
-        <p>@extendedIngredient.meta</p>
-        <p>@extendedIngredient.name</p>
-        <p>@extendedIngredient.original</p>
-        <p>@extendedIngredient.unit</p>
-        <p>@extendedIngredient.nameClean</p>
-        <p>@extendedIngredient.originalName</p>
-    }
-    <p>@Model.Information.glutenFree</p>
-    <p>@Model.Information.healthScore</p>
-    <p>@Model.Information.imageType</p>
-    <p>@Model.Information.lowFodmap</p>
-    <p>@Model.Information.originalId</p>
-    <p>@Model.Information.preparationMinutes</p>
-    <p>@Model.Information.sourceName</p>
-    <p>@Model.Information.sourceUrl</p>
-    <p>@Model.Information.veryHealthy</p>
-    <p>@Model.Information.veryPopular</p>
-    @foreach (var pairedWine in @Model.Information.winePairing.pairedWines)
-    {
-        <p>@pairedWine</p>
-    }
-    <p>@Model.Information.winePairing.pairingText</p>
-    @foreach (var productMatch in Model.Information.winePairing.productMatches)
-    {
-        <p>@productMatch.description</p>
-        <p>@productMatch.id</p>
-        <p>@productMatch.link</p>
-        <p>@productMatch.price</p>
-        <p>@productMatch.score</p>
-        <p>@productMatch.title</p>
-        <p>@productMatch.averageRating</p>
-        <p>@productMatch.imageUrl</p>
-        <p>@productMatch.ratingCount</p>
-    }
-    <p>@Model.Information.pricePerServing</p>
-    <p>@Model.Information.readyInMinutes</p>
-    <p>@Model.Information.weightWatcherSmartPoints</p>*@
 }
